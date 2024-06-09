@@ -68,3 +68,108 @@ Output if the file does not exist:
 sh
 
 error scanning sometextfile: could not open file
+
+Yara Conditions Continued
+Overview
+
+Checking for file existence isn't particularly useful. Yara conditions can do much more. Here are some key components:
+Meta Section
+
+Reserved for descriptive information by the rule's author. This section does not influence the rule's functionality. For example:
+
+yara
+
+meta:
+    desc = "Checks for Hello World string"
+
+Strings
+
+Strings allow searching for specific text or hexadecimal patterns in files.
+
+Example: Basic String Search
+
+yara
+
+rule helloworld_checker {
+    strings:
+        $hello_world = "Hello World!"
+
+    condition:
+        $hello_world
+}
+
+This rule matches files containing the exact string "Hello World!".
+
+Case-Insensitive Search
+
+yara
+
+rule helloworld_checker {
+    strings:
+        $hello_world = "Hello World!"
+        $hello_world_lowercase = "hello world"
+        $hello_world_uppercase = "HELLO WORLD"
+
+    condition:
+        any of them
+}
+
+This rule matches files containing "Hello World!" in any case.
+Conditions
+
+Yara supports various conditions similar to regular programming:
+
+    <= less than or equal to
+    >= greater than or equal to
+    != not equal to
+
+Example: Limiting Occurrences
+
+yara
+
+rule helloworld_checker {
+    strings:
+        $hello_world = "Hello World!"
+
+    condition:
+        #hello_world <= 10
+}
+
+This rule matches files with 10 or fewer occurrences of "Hello World!".
+Combining Keywords
+
+You can combine multiple conditions using:
+
+    and
+    not
+    or
+
+Example: Combining Conditions
+
+yara
+
+rule helloworld_checker {
+    strings:
+        $hello_world = "Hello World!"
+
+    condition:
+        $hello_world and filesize < 10KB
+}
+
+This rule matches files containing "Hello World!" and with a file size less than 10KB.
+Testing Rules
+
+Command:
+
+sh
+
+yara myfirstrule.yar mytextfile.txt
+
+Example Output:
+
+sh
+
+helloworld_textfile_checker mytextfile.txt
+
+    The rule name is shown in red.
+    The matched file is shown in green.
