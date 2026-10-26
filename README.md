@@ -12,7 +12,7 @@ Study notes on **YARA**, the pattern matching tool used to identify and classify
 | [YARA Rules](Yara%20Rules.md) | Rule structure: meta, strings, conditions and modules |
 | [YARA Tools](Yara%20Tools.md) | Tools and projects built around YARA |
 | [LOKI](LOKI.md) | LOKI, a free IOC and YARA scanner |
-| [VALHALLA](WALHALLA.md) | Nextron's VALHALLA feed of ready-made YARA rules |
+| [VALHALLA](VALHALLA.md) | Nextron's VALHALLA feed of ready-made YARA rules |
 
 ## Quick example
 
